@@ -1,7 +1,43 @@
-import React, { createContext } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+import auth from '../FirebaseFiles/firebaseConfig';
 export const ContextProvider = createContext(null)
 const ContextApi = ({children}) => {
-   const data = {name: 'samio hasan', id: '21-45579-3'}
+   const [user,setUser] = useState(null);
+   const [loading,setLoading] = useState(true);
+   const provider = new GoogleAuthProvider();
+   // sign Up
+   const registeredUser = (email,password)=>{
+      setLoading(true)
+      return createUserWithEmailAndPassword(auth,email,password)
+   }
+   // sign In
+   const login = (email,password) =>{
+      setLoading(true)
+      return signInWithEmailAndPassword(auth,email,password)
+   }
+
+   const googleLogin = () =>{
+      setLoading(true)
+      return signInWithPopup(auth,provider)
+   }
+
+   const logOut = () =>{
+      setLoading(true)
+      return signOut(auth)
+   }
+
+   useEffect(()=>{
+      const unSubscribe = onAuthStateChanged(auth,currentUser=>{
+         setUser(currentUser)
+         setLoading(false)
+      })
+      return ()=>{
+         unSubscribe()
+      }
+   },[])
+
+   const data = {user,registeredUser,loading,setLoading,login,googleLogin,logOut}
    return (
       <ContextProvider.Provider value={data}>
          {children}
