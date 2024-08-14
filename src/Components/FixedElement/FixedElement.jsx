@@ -1,11 +1,11 @@
-import React from 'react';
+
 import { Outlet } from 'react-router-dom';
 import NavBar from '../WebHeading/NavBar';
 
 const FixedElement = () => {
     return (
         <div>
-           <NavBar></NavBar>
+            <NavBar></NavBar>
             <div>
                 <Outlet></Outlet>
             </div>

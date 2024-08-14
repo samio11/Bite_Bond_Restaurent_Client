@@ -9,14 +9,17 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import WebPaths from './Routes/WebPaths.jsx'
+import ContextApi from './AllContext/ContextApi.jsx';
 
 
 const queryClient = new QueryClient()
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>
-    <React.StrictMode>
-      <RouterProvider router={WebPaths} />
-    </React.StrictMode>,
+    <ContextApi>
+      <React.StrictMode>
+        <RouterProvider router={WebPaths} />
+      </React.StrictMode>
+    </ContextApi>
   </QueryClientProvider>
 )
