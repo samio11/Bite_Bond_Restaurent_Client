@@ -109,7 +109,7 @@ const NavBar = () => {
                                 tabIndex={0}
                                 className="menu menu-sm absolute dropdown-content bg-base-100 rounded-box z-[1] top-14 right-0 w-52 p-2 shadow space-x-3 flex justify-center items-center">
                                 <div className="space-y-3">
-                                    <img className="w-[50px] h-[50px] rounded-full" src={user?.photoURL} alt="" />
+                                    <img className="w-[50px] h-[50px] rounded-full" referrerPolicy="no-referrer" src={user?.photoURL} alt="" />
                                     <p className="text-xs italic font-semibold text-gray-500">{user?.displayName}</p>
                                     <button onClick={handleLogout} className="btn btn-sm btn-error btn-outline">LogOut</button>
 
@@ -121,9 +121,6 @@ const NavBar = () => {
                         <button onClick={() => navigate('/login')} className="btn btn-outline border-b-4 hidden md:inline-flex">Login</button>
                     </div>
                 }
-
-
-
 
                 <div className="dropdown relative lg:hidden">
                     <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -142,7 +139,7 @@ const NavBar = () => {
                     </div>
                     <ul
                         tabIndex={0}
-                        className="menu menu-sm absolute dropdown-content bg-base-100 rounded-box z-[1] top-14 right-0 w-52 p-2 shadow space-x-3">
+                        className="menu menu-sm absolute dropdown-content bg-base-100 rounded-box z-[40] top-14 right-0 w-52 p-2 shadow space-x-3">
                         {navs}
                         {
                             user ? <li>

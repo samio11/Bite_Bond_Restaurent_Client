@@ -1,9 +1,11 @@
 import NavBar from "../WebHeading/NavBar";
+import SliderPart from "./SliderPart";
 
 const Home = () => {
     return (
         <div>
-           this is Home
+           {/* Slider */}
+           <SliderPart></SliderPart>
         </div>
     );
 };
