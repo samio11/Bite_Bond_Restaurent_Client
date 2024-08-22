@@ -7,7 +7,7 @@ const FixedElement = () => {
     return (
         <div>
             <NavBar></NavBar>
-            <div className=''>
+            <div className='min-h-[calc(100vh-510px)]'>
                 <Outlet></Outlet>
             </div>
             <Footer></Footer>
