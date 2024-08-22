@@ -7,9 +7,14 @@ import SliderPart from "./SliderPart";
 import { useQuery, } from '@tanstack/react-query'
 import CustomSpinner from "../MySpinner/CustomSpinner";
 import MenuFood from "./MenuFood";
+import { useNavigate } from "react-router-dom";
+import OurHistory from "./OurHistory";
+import ChefRecomandCard from "./ChefRecomandCard";
+import Customer_Review from "./Customer_Review";
 
 const Home = () => {
-
+    const navigate = useNavigate();
+    // For Menu
     const { data: menuFood = [], isLoading } = useQuery({
         queryKey: ['popularMenu'],
         queryFn: async () => {
@@ -17,7 +22,23 @@ const Home = () => {
             return data
         }
     })
+    // For Chef Recommend
+    const { data: chefRecommend = [], isLoading: chefLoading } = useQuery({
+        queryKey: ['popularFood'],
+        queryFn: async () => {
+            const { data } = await axios(`${import.meta.env.VITE_SERVER_URL}/home-chef-recommend`)
+            return data
+        }
+    })
+
+
+
+    const handleFullMenu = () => {
+        navigate('/menu')
+    }
     if (isLoading) return <CustomSpinner></CustomSpinner>
+    if (chefLoading) return <CustomSpinner></CustomSpinner>
+   
     return (
         <div>
             {/* Slider */}
@@ -39,8 +60,20 @@ const Home = () => {
                 }
             </div>
             <div className=" w-full flex justify-center items-center my-4">
-                <button className="btn btn-outline btn-wide border-b-2">View Full Menu</button>
+                <button onClick={handleFullMenu} className="btn btn-outline btn-wide border-b-2">View Full Menu</button>
             </div>
+            {/* Our History */}
+            <OurHistory></OurHistory>
+            {/* Chef Recomandation */}
+            <ForHeadingAndSubHeading title={'Chef Recommends'} subtitle={'Curated with Passion, Crafted to Perfection'}></ForHeadingAndSubHeading>
+            <div className="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
+                {
+                    chefRecommend?.map((x) => <ChefRecomandCard key={x._id} itemfood={x} />)
+                }
+            </div>
+            {/* <ForHeadingAndSubHeading title={'Testimonials'} subtitle={'Check What Our Customers Say'}></ForHeadingAndSubHeading> */}
+            <Customer_Review></Customer_Review>
+
         </div>
     );
 };

@@ -4,7 +4,6 @@ import { MdAccessTime } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
 
 const MenuFood = ({ itemFood }) => {
-    console.log(itemFood)
     return (
         <div className="p-8 sm:flex sm:space-x-6 dark:bg-gray-50 dark:text-gray-800 shadow-lg">
             <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0">
