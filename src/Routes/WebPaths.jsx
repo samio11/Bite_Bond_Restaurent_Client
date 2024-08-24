@@ -18,7 +18,7 @@ const WebPaths = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: '/contact',
+                path: '/review',
                 element: <Contact></Contact>
             },
             {

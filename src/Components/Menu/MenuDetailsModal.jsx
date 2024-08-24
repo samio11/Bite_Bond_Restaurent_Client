@@ -8,7 +8,7 @@ import { IoMan } from "react-icons/io5";
 import { FaBowlFood } from "react-icons/fa6";
 
 const MenuDetailsModal = ({ isOpen, closeModal, totalData }) => {
-    console.log(totalData)
+    // console.log(totalData)
     return (
         <div>
             <Dialog open={isOpen} as="div" className="relative z-50 focus:outline-none" onClose={closeModal}>

@@ -2,10 +2,12 @@ import React from 'react';
 import { MdOutlineAttachMoney } from "react-icons/md";
 import { MdAccessTime } from "react-icons/md";
 import { FaStar } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 const MenuFood = ({ itemFood }) => {
+    const navigate = useNavigate()
     return (
-        <div className="p-8 sm:flex sm:space-x-6 dark:bg-gray-50 dark:text-gray-800 shadow-lg">
+        <div onClick={()=> navigate('menu')} className="p-8 sm:flex sm:space-x-6 dark:bg-gray-50 dark:text-gray-800 shadow-lg">
             <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0">
                 <img src={itemFood?.food_image} alt="" className="object-cover object-center w-full h-full rounded dark:bg-gray-500" />
             </div>

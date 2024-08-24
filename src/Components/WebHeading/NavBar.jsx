@@ -9,7 +9,6 @@ import toast from "react-hot-toast";
 const NavBar = () => {
     const navigate = useNavigate();
     const { user, logOut } = useContext(ContextProvider)
-    console.log(user)
     const handleLogout = async () => {
         try {
             await logOut()
@@ -33,12 +32,12 @@ const NavBar = () => {
         </li>
         <li>
             <NavLink
-                to="/contact"
+                to="/review"
                 className={({ isActive, isPending }) =>
                     isPending ? "pending" : isActive ? "active" : ""
                 }
             >
-                <span><GrContact /></span> Contact Us
+                <span><GrContact /></span> Give Review
             </NavLink>
         </li>
         <li>
