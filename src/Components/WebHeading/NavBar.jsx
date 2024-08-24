@@ -2,7 +2,6 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { IoHomeOutline } from "react-icons/io5";
 import { GrContact } from "react-icons/gr";
 import { MdOutlineRestaurantMenu } from "react-icons/md";
-import { FaShop } from "react-icons/fa6";
 import { MdDashboard } from "react-icons/md";
 import { useContext } from "react";
 import { ContextProvider } from "../../AllContext/ContextApi";
@@ -50,16 +49,6 @@ const NavBar = () => {
                 }
             >
                 <span><MdOutlineRestaurantMenu /></span> Our Menu
-            </NavLink>
-        </li>
-        <li>
-            <NavLink
-                to="/shop"
-                className={({ isActive, isPending }) =>
-                    isPending ? "pending" : isActive ? "active" : ""
-                }
-            >
-                <span><FaShop /></span> Our Shop
             </NavLink>
         </li>
         <li>
