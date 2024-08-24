@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FaBowlFood } from "react-icons/fa6";
 import { BsCashCoin } from "react-icons/bs";
 import { FaStar } from "react-icons/fa";
 import { IoTime } from "react-icons/io5";
+import MenuDetailsModal from './MenuDetailsModal';
 
 const MenuSingleCard = ({ data }) => {
     console.log(data)
+    const [isOpen,setIsOpen] = useState(false)
+    const closeModal = () =>{
+        setIsOpen(false)
+    }
     return (
         <div className="w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-lg dark:bg-gray-800">
             <img className="object-cover object-center w-full h-56" src={data?.food_image} alt="avatar" />
@@ -42,9 +47,11 @@ const MenuSingleCard = ({ data }) => {
                 </div>
 
                 <div className='flex justify-around items-center my-4'>
-                   <button className='btn btn-outline'>View Details</button>
+                   <button onClick={()=> setIsOpen(true)} className='btn btn-outline'>View Details</button>
                    <button className='btn btn-outline'>Add Cart</button>
                 </div>
+
+                <MenuDetailsModal isOpen={isOpen} closeModal={closeModal} totalData={data}></MenuDetailsModal>
 
 
             </div>
