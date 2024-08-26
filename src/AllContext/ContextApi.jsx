@@ -1,43 +1,57 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 import auth from '../FirebaseFiles/firebaseConfig';
+import axios from 'axios';
 export const ContextProvider = createContext(null)
-const ContextApi = ({children}) => {
-   const [user,setUser] = useState(null);
-   const [loading,setLoading] = useState(true);
+const ContextApi = ({ children }) => {
+   const [user, setUser] = useState(null);
+   const [loading, setLoading] = useState(true);
    const provider = new GoogleAuthProvider();
    // sign Up
-   const registeredUser = (email,password)=>{
+   const registeredUser = (email, password) => {
       setLoading(true)
-      return createUserWithEmailAndPassword(auth,email,password)
+      return createUserWithEmailAndPassword(auth, email, password)
    }
    // sign In
-   const login = (email,password) =>{
+   const login = (email, password) => {
       setLoading(true)
-      return signInWithEmailAndPassword(auth,email,password)
+      return signInWithEmailAndPassword(auth, email, password)
    }
 
-   const googleLogin = () =>{
+   const googleLogin = () => {
       setLoading(true)
-      return signInWithPopup(auth,provider)
+      return signInWithPopup(auth, provider)
    }
 
-   const logOut = () =>{
+   const saveUserDb = async user => {
+      const fullData = {
+         email: user?.email,
+         role: 'guest',
+         status: 'verified'
+      }
+      const { data } = await axios.put(`${import.meta.env.VITE_SERVER_URL}/user`, fullData)
+      return data
+   }
+
+   const logOut = () => {
       setLoading(true)
       return signOut(auth)
    }
 
-   useEffect(()=>{
-      const unSubscribe = onAuthStateChanged(auth,currentUser=>{
+   useEffect(() => {
+      const unSubscribe = onAuthStateChanged(auth, currentUser => {
          setUser(currentUser)
-         setLoading(false)
+         if (currentUser) {
+            saveUserDb(currentUser)
+            setLoading(false)
+         }
       })
-      return ()=>{
+      return () => {
          unSubscribe()
       }
-   },[])
+   }, [])
 
-   const data = {user,registeredUser,loading,setLoading,login,googleLogin,logOut}
+   const data = { user, registeredUser, loading, setLoading, login, googleLogin, logOut }
    return (
       <ContextProvider.Provider value={data}>
          {children}

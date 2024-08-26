@@ -2,7 +2,6 @@ import React from 'react';
 import { CiStar } from "react-icons/ci";
 
 const Review_Card = ({ data }) => {
-    console.log(data)
     return (
         <div>
             <div className="relative overflow-hidden transition duration-300 transform rounded shadow-lg lg:hover:-translate-y-2 hover:shadow-2xl">

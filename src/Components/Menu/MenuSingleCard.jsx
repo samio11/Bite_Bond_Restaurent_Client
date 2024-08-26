@@ -38,7 +38,8 @@ const MenuSingleCard = ({ data }) => {
                 "name": user?.displayName,
                 "email": user?.email,
                 "photo": user?.photoURL
-            }
+            },
+            "food_ordered_time" : new Date()
         }
         delete orderingInfo._id
         console.log('inside function:- ', orderingInfo)
