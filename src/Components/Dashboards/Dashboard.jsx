@@ -5,11 +5,10 @@ import SideBar from './SideBar';
 
 const Dashboard = () => {
     const [role] = useRole();
-    console.log(role)
     return (
         <div className='flex justify-center gap-2'>
             {/* For Side Bar */}
-            <div className='w-[20%] h-auto'>
+            <div className='w-[45%] md:w-[20%] h-auto'>
                 <SideBar></SideBar>
             </div>
             {/* For Main Content */}

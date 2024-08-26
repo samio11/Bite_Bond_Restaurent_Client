@@ -13,10 +13,9 @@ import { IoArrowBackCircle } from "react-icons/io5";
 const SideBar = () => {
     const { user } = useContext(ContextProvider)
     const [role] = useRole()
-    console.log(user)
     return (
         <div>
-            <aside className="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+            <aside className="flex flex-col w-full h-screen px-4 py-8 overflow-y-auto bg-white border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
                 <a href="#" className="mx-auto">
                     <img className="w-[100px] h-[100px]" src="https://marketplace.canva.com/EAF1XAgJrCg/1/0/1600w/canva-white-brown-simple-restaurant-logo-koIA1HEug0Q.jpg" alt="" />
                 </a>
